@@ -1,6 +1,6 @@
+import * as format from "@scaleleap/pg-format"
 import createDebugLogger from "debug"
 import EventEmitter from "events"
-import format from "pg-format"
 import TypedEventEmitter from "typed-emitter"
 
 // Need to require `pg` like this to avoid ugly error message (see #15)
@@ -179,24 +179,32 @@ function scheduleParanoidChecking (dbClient: pg.Client, intervalTime: number, re
 }
 
 export interface Subscriber<Events extends Record<string, any> = { [channel: string]: any }> {
-    /** Emits events: "error", "notification" & "redirect" */
-    events: TypedEventEmitter<PgListenEvents>;
-    /** For convenience: Subscribe to distinct notifications here, event name = channel name */
-    notifications: TypedEventEmitter<EventsToEmitterHandlers<Events>>;
-    /** Don't forget to call this asyncronous method before doing your thing */
-    connect(): Promise<void>;
-    close(): Promise<void>;
-    getSubscribedChannels(): string[];
-    listenTo(channelName: string): Promise<pg.QueryResult> | undefined;
-    notify<EventName extends keyof Events>(
-      channelName: any extends Events[EventName] ? EventName : void extends Events[EventName] ? never : EventName,
-      payload: Events[EventName] extends void ? never : Events[EventName]
-    ): Promise<pg.QueryResult>;
-    notify<EventName extends keyof Events>(
-      channelName: void extends Events[EventName] ? EventName : never
-    ): Promise<pg.QueryResult>;
-    unlisten(channelName: string): Promise<pg.QueryResult> | undefined;
-    unlistenAll(): Promise<pg.QueryResult>;
+  /** Emits events: "error", "notification" & "redirect" */
+  events: TypedEventEmitter<PgListenEvents>;
+  /** For convenience: Subscribe to distinct notifications here, event name = channel name */
+  notifications: TypedEventEmitter<EventsToEmitterHandlers<Events>>;
+
+  /** Don't forget to call this asyncronous method before doing your thing */
+  connect(): Promise<void>;
+
+  close(): Promise<void>;
+
+  getSubscribedChannels(): string[];
+
+  listenTo(channelName: string): Promise<pg.QueryResult> | undefined;
+
+  notify<EventName extends keyof Events>(
+    channelName: any extends Events[EventName] ? EventName : void extends Events[EventName] ? never : EventName,
+    payload: Events[EventName] extends void ? never : Events[EventName]
+  ): Promise<pg.QueryResult>;
+
+  notify<EventName extends keyof Events>(
+    channelName: void extends Events[EventName] ? EventName : never
+  ): Promise<pg.QueryResult>;
+
+  unlisten(channelName: string): Promise<pg.QueryResult> | undefined;
+
+  unlistenAll(): Promise<pg.QueryResult>;
 }
 
 function createPostgresSubscriber<Events extends Record<string, any> = { [channel: string]: any }> (

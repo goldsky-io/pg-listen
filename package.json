@@ -1,5 +1,5 @@
 {
-  "name": "pg-listen",
+  "name": "@goldskycom/pg-listen",
   "version": "1.7.0",
   "license": "MIT",
   "description": "PostgreSQL LISTEN &  NOTIFY that finally works.",
@@ -25,8 +25,8 @@
     "pg": "7.x || 8.x"
   },
   "dependencies": {
+    "@scaleleap/pg-format": "^1.0.0",
     "debug": "^4.1.1",
-    "pg-format": "^1.0.4",
     "typed-emitter": "^0.1.0"
   },
   "devDependencies": {
