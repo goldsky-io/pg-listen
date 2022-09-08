@@ -35,10 +35,10 @@ Works with node.js 8+ and plain JavaScript or TypeScript 3. Uses the Postgres [`
 
 ```sh
 # using npm:
-npm install pg-listen
+npm install @goldskycom/pg-listen
 
 # using yarn:
-yarn add pg-listen
+yarn add @goldskycom/pg-listen
 ```
 
 

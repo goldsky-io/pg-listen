@@ -12,7 +12,8 @@
     "test": "ava test/*.test.ts",
     "test:database": "docker run -e POSTGRES_DB=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 --rm postgres:10.4-alpine",
     "posttest": "tslint --project .",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "publish": "npm publish"
   },
   "keywords": [
     "postgres",
