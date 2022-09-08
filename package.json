@@ -1,10 +1,10 @@
 {
   "name": "@goldskycom/pg-listen",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "license": "MIT",
   "description": "PostgreSQL LISTEN &  NOTIFY that finally works.",
-  "author": "Andy Wermke (https://github.com/andywer)",
-  "repository": "github:andywer/pg-listen",
+  "author": "Goldsky",
+  "repository": "github:goldsky-io/pg-listen",
   "main": "./index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
