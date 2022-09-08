@@ -1,6 +1,6 @@
 {
   "name": "@goldskycom/pg-listen",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "license": "MIT",
   "description": "PostgreSQL LISTEN &  NOTIFY that finally works.",
   "author": "Goldsky",
